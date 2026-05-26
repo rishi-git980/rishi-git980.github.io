@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nalike Rishi — CSE Student & Cybersecurity Enthusiast</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0a1628;
+  --navy2: #112240;
+  --navy3: #1e3a5f;
+  --blue: #2563eb;
+  --blue-lt: #3b82f6;
+  --cyan: #0ea5e9;
+  --slate: #64748b;
+  --slate-lt: #94a3b8;
+  --white: #ffffff;
+  --off-white: #f8fafc;
+  --light: #e2e8f0;
+  --light2: #f1f5f9;
+  --accent: #06b6d4;
+  --accent2: #0891b2;
+  --gold: #f59e0b;
+  --gold-lt: #fef3c7;
+  --success: #10b981;
+  --grad1: linear-gradient(135deg, #0a1628 0%, #112240 50%, #1a3a5f 100%);
+  --grad-accent: linear-gradient(90deg, #2563eb, #0ea5e9);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--off-white);
+  color: var(--navy);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--light2); }
+::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10, 22, 40, 0.96);
+  backdrop-filter: blur(12px);
+  padding: 0 clamp(1.5rem, 6vw, 5rem);
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.nav-logo {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem; color: #fff; letter-spacing: 0.01em;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.6);
+  text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* HERO */
+.hero {
+  background: var(--grad1);
+  padding: clamp(5rem, 12vh, 8rem) clamp(1.5rem, 6vw, 5rem) clamp(4rem, 10vh, 7rem);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -50%; right: -20%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -30%; left: 5%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center;
+  position: relative; z-index: 1;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(6,182,212,0.12);
+  border: 1px solid rgba(6,182,212,0.3);
+  color: var(--accent); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.35rem 0.9rem; border-radius: 50px;
+  margin-bottom: 1.4rem;
+}
+.hero-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
+.hero-name {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+  line-height: 1.08; color: #fff; margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+.hero-name .accent { color: var(--accent); font-style: italic; }
+.hero-role {
+  font-size: 1.05rem; color: rgba(255,255,255,0.55);
+  font-weight: 400; margin-bottom: 1.4rem; letter-spacing: 0.02em;
+}
+.hero-desc {
+  font-size: 0.97rem; color: rgba(255,255,255,0.72);
+  font-weight: 300; max-width: 440px; line-height: 1.8; margin-bottom: 2.2rem;
+}
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.btn-primary {
+  padding: 0.75rem 1.8rem;
+  background: var(--grad-accent);
+  color: #fff; border: none; border-radius: 6px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem; font-weight: 600;
+  cursor: pointer; text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: opacity 0.2s, transform 0.15s;
+  box-shadow: 0 4px 15px rgba(37,99,235,0.4);
+}
+.btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+.btn-ghost {
+  padding: 0.75rem 1.8rem;
+  background: rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.85);
+  border: 1px solid rgba(255,255,255,0.2); border-radius: 6px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem; font-weight: 500;
+  cursor: pointer; text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+.hero-social { display: flex; gap: 1rem; }
+.social-link {
+  display: flex; align-items: center; gap: 0.5rem;
+  color: rgba(255,255,255,0.5); text-decoration: none;
+  font-size: 0.82rem; font-weight: 500;
+  transition: color 0.2s;
+}
+.social-link:hover { color: var(--accent); }
+.social-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* HERO RIGHT — STAT CARDS */
+.hero-stats { display: flex; flex-direction: column; gap: 1rem; }
+.stat-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 1.2rem 1.5rem;
+  display: flex; align-items: center; gap: 1.1rem;
+  transition: background 0.2s;
+}
+.stat-card:hover { background: rgba(255,255,255,0.09); }
+.stat-icon {
+  width: 42px; height: 42px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.stat-icon.blue { background: rgba(37,99,235,0.2); }
+.stat-icon.cyan { background: rgba(6,182,212,0.2); }
+.stat-icon.green { background: rgba(16,185,129,0.2); }
+.stat-icon.gold { background: rgba(245,158,11,0.2); }
+.stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; }
+.stat-val { font-size: 0.98rem; font-weight: 600; color: #fff; }
+.cgpa { color: var(--gold); font-family: 'Fraunces', serif; font-size: 1.1rem; }
+
+/* SECTIONS */
+.section-wrap { max-width: 1100px; margin: 0 auto; padding: clamp(3.5rem,7vh,5.5rem) clamp(1.5rem,6vw,5rem); }
+.divider { border: none; border-top: 1px solid var(--light); }
+.section-eyebrow {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 0.5rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.section-eyebrow::before {
+  content: '';
+  display: block; width: 24px; height: 2px;
+  background: var(--grad-accent); border-radius: 2px;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: var(--navy); margin-bottom: 2.8rem;
+  line-height: 1.15; font-weight: 600;
+}
+.section-title em { font-style: italic; color: var(--blue); }
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 1.1rem; }
+.skill-group {
+  background: #fff;
+  border: 1px solid var(--light);
+  border-radius: 10px;
+  padding: 1.3rem 1.4rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.skill-group:hover {
+  border-color: var(--blue);
+  box-shadow: 0 4px 20px rgba(37,99,235,0.08);
+}
+.skill-group-header {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+.skill-group-icon { font-size: 1.1rem; }
+.skill-group-name {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--slate);
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.skill-tag {
+  background: var(--light2); color: var(--navy2);
+  font-size: 0.78rem; font-weight: 600;
+  padding: 0.25rem 0.65rem; border-radius: 4px;
+  border: 1px solid var(--light);
+}
+
+/* PROJECTS */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.5rem; }
+.project-card {
+  background: #fff;
+  border: 1px solid var(--light);
+  border-radius: 12px;
+  padding: 1.8rem 2rem;
+  position: relative; overflow: hidden;
+  transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+}
+.project-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--grad-accent);
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(37,99,235,0.1);
+  border-color: rgba(37,99,235,0.25);
+}
+.project-num {
+  font-family: 'Fraunces', serif;
+  font-size: 2.5rem; font-weight: 600;
+  color: var(--light); line-height: 1;
+  margin-bottom: 0.4rem;
+  position: absolute; top: 1.2rem; right: 1.5rem;
+}
+.project-type {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.project-type-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); }
+.project-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem; color: var(--navy); margin-bottom: 0.8rem; font-weight: 600;
+  line-height: 1.3;
+}
+.project-desc { font-size: 0.88rem; color: var(--slate); line-height: 1.75; margin-bottom: 1.1rem; }
+.project-bullets { list-style: none; }
+.project-bullets li {
+  font-size: 0.85rem; color: var(--slate);
+  padding: 0.25rem 0; padding-left: 1.1rem; position: relative;
+}
+.project-bullets li::before {
+  content: '→';
+  position: absolute; left: 0; color: var(--blue); font-size: 0.8rem;
+}
+
+/* CERTS */
+.certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+.cert-card {
+  background: #fff;
+  border: 1px solid var(--light);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  display: flex; align-items: flex-start; gap: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cert-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(6,182,212,0.08);
+}
+.cert-badge {
+  width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+.cert-badge.cisco { background: rgba(37,99,235,0.1); }
+.cert-badge.nptel { background: rgba(16,185,129,0.1); }
+.cert-name { font-size: 0.9rem; font-weight: 600; color: var(--navy); line-height: 1.35; margin-bottom: 0.2rem; }
+.cert-issuer {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--slate-lt);
+}
+
+/* EDUCATION */
+.edu-timeline { display: flex; flex-direction: column; gap: 0; }
+.edu-item {
+  display: grid; grid-template-columns: 160px 1fr;
+  gap: 2rem;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--light);
+  align-items: start;
+  position: relative;
+}
+.edu-item:last-child { border-bottom: none; }
+.edu-year {
+  font-size: 0.8rem; font-weight: 600;
+  color: var(--slate); padding-top: 0.1rem; line-height: 1.5;
+}
+.edu-right {}
+.edu-inst { font-weight: 700; color: var(--navy); font-size: 0.98rem; margin-bottom: 0.15rem; }
+.edu-qual { font-size: 0.88rem; color: var(--slate); margin-bottom: 0.5rem; }
+.edu-score {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  background: var(--gold-lt); color: #92400e;
+  font-size: 0.8rem; font-weight: 700;
+  padding: 0.2rem 0.6rem; border-radius: 4px;
+}
+
+/* STRENGTHS */
+.strengths-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+.strength-card {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 1.6rem 1.7rem;
+  color: #fff;
+  transition: transform 0.2s, background 0.2s;
+}
+.strength-card:hover { transform: translateY(-3px); background: var(--navy2); }
+.strength-icon-wrap {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: rgba(37,99,235,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem; margin-bottom: 1rem;
+}
+.strength-title { font-weight: 700; font-size: 0.98rem; margin-bottom: 0.35rem; }
+.strength-desc { font-size: 0.83rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+/* CONTACT / FOOTER */
+.contact-section {
+  background: var(--grad1);
+  padding: clamp(4rem, 8vh, 6rem) clamp(1.5rem, 6vw, 5rem);
+  position: relative; overflow: hidden;
+}
+.contact-section::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(37,99,235,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.contact-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.contact-left {}
+.contact-eyebrow {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 0.6rem;
+}
+.contact-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: #fff; font-weight: 600; line-height: 1.2; margin-bottom: 1rem;
+}
+.contact-title em { color: var(--accent); font-style: italic; }
+.contact-sub { font-size: 0.95rem; color: rgba(255,255,255,0.6); font-weight: 300; line-height: 1.75; }
+.contact-right { display: flex; flex-direction: column; gap: 1rem; }
+.contact-item {
+  display: flex; align-items: center; gap: 1rem;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 1rem 1.3rem;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+.contact-item:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(6,182,212,0.4);
+}
+.contact-item-icon {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: rgba(6,182,212,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.contact-item-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+.contact-item-val { font-size: 0.9rem; font-weight: 600; color: #fff; }
+
+.footer-bar {
+  background: #060e1a;
+  text-align: center; padding: 1.1rem;
+  font-size: 0.77rem; color: rgba(255,255,255,0.3);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-stats { display: none; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .nav-links { display: none; }
+  .edu-item { grid-template-columns: 1fr; gap: 0.3rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Nalike <span>Rishi</span></span>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certs">Certifications</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">
+        <span class="hero-tag-dot"></span>
+        Available for Internships & Roles
+      </div>
+      <h1 class="hero-name">Nalike<br /><span class="accent">Rishi</span></h1>
+      <p class="hero-role">B.Tech CSE · Cybersecurity & Networking Enthusiast</p>
+      <p class="hero-desc">
+        Final-year Computer Science student at KITS Warangal with hands-on experience in web development,
+        cybersecurity fundamentals, and networking — backed by CISCO & NPTEL certifications.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View My Projects</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+      <div class="hero-social">
+        <a href="https://www.linkedin.com/in/nalike-rishi-75b6a927a/" target="_blank" class="social-link">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/rishi-git980" target="_blank" class="social-link">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-icon blue">🎓</div>
+          <div>
+            <div class="stat-label">Institution</div>
+            <div class="stat-val">KITS Warangal · <span class="cgpa">7.6 CGPA</span></div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon cyan">🔐</div>
+          <div>
+            <div class="stat-label">Specialization</div>
+            <div class="stat-val">Cybersecurity & Networking</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon gold">📜</div>
+          <div>
+            <div class="stat-label">Certifications</div>
+            <div class="stat-val">4 — CISCO & NPTEL</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">📍</div>
+          <div>
+            <div class="stat-label">Location</div>
+            <div class="stat-val">Warangal, Telangana, IN</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SKILLS -->
+<hr class="divider" />
+<div class="section-wrap" id="skills">
+  <p class="section-eyebrow">What I work with</p>
+  <h2 class="section-title">Technical <em>Skills</em></h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-header">
+        <span class="skill-group-icon">💻</span>
+        <span class="skill-group-name">Languages</span>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">C</span>
+        <span class="skill-tag">Java</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header">
+        <span class="skill-group-icon">🌐</span>
+        <span class="skill-group-name">Web Development</span>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header">
+        <span class="skill-group-icon">🔗</span>
+        <span class="skill-group-name">Networking</span>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">CISCO Packet Tracer</span>
+        <span class="skill-tag">Network Essentials</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header">
+        <span class="skill-group-icon">🛡️</span>
+        <span class="skill-group-name">Cybersecurity</span>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Threat Analysis</span>
+        <span class="skill-tag">Cyber Principles</span>
+        <span class="skill-tag">Wireshark</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header">
+        <span class="skill-group-icon">🛠️</span>
+        <span class="skill-group-name">Tools</span>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Cursor</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<hr class="divider" />
+<div class="section-wrap" id="projects">
+  <p class="section-eyebrow">Things I've built</p>
+  <h2 class="section-title">Featured <em>Projects</em></h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="project-type"><span class="project-type-dot"></span>Self-Initiated · Web Development</div>
+      <h3 class="project-title">Personal Portfolio Website</h3>
+      <p class="project-desc">A responsive personal portfolio website showcasing academic projects, skills, and achievements with clean UI/UX and cross-browser compatibility.</p>
+      <ul class="project-bullets">
+        <li>Built with HTML, CSS, and JavaScript</li>
+        <li>Responsive design across all screen sizes</li>
+        <li>Deployed online with Git version control</li>
+      </ul>
+    </div>
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-type"><span class="project-type-dot"></span>Academic Project · Full Stack</div>
+      <h3 class="project-title">Discussion / Forum Board</h3>
+      <p class="project-desc">A web-based community discussion platform where users can post topics, reply to threads, and manage discussions — simulating a real-world forum experience.</p>
+      <ul class="project-bullets">
+        <li>Back-end logic for user interaction & post management</li>
+        <li>Dynamic content rendering</li>
+        <li>Clean architecture & intuitive navigation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<hr class="divider" />
+<div class="section-wrap" id="certs">
+  <p class="section-eyebrow">Validated expertise</p>
+  <h2 class="section-title">Certifi<em>cations</em></h2>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-badge cisco">🔵</div>
+      <div>
+        <div class="cert-name">Introduction to Cyber Security</div>
+        <div class="cert-issuer">CISCO</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge cisco">🔵</div>
+      <div>
+        <div class="cert-name">Cyber Security Essentials</div>
+        <div class="cert-issuer">CISCO</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge cisco">🔵</div>
+      <div>
+        <div class="cert-name">Networking Essentials</div>
+        <div class="cert-issuer">CISCO</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge nptel">🟢</div>
+      <div>
+        <div class="cert-name">Blockchain and Its Applications</div>
+        <div class="cert-issuer">NPTEL</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<hr class="divider" />
+<div class="section-wrap" id="education">
+  <p class="section-eyebrow">Academic journey</p>
+  <h2 class="section-title">Edu<em>cation</em></h2>
+  <div class="edu-timeline">
+    <div class="edu-item">
+      <div class="edu-year">2022 – 2026<br />(Pursuing)</div>
+      <div class="edu-right">
+        <div class="edu-inst">Kakatiya Institute of Technology &amp; Science, Warangal</div>
+        <div class="edu-qual">B.Tech — Computer Science &amp; Engineering</div>
+        <span class="edu-score">⭐ 7.6 CGPA</span>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-year">2022</div>
+      <div class="edu-right">
+        <div class="edu-inst">Acumen Junior College</div>
+        <div class="edu-qual">Intermediate — MPC</div>
+        <span class="edu-score">⭐ 88.9%</span>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-year">2020</div>
+      <div class="edu-right">
+        <div class="edu-inst">Aryabhatta Concept School</div>
+        <div class="edu-qual">SSC (Secondary School Certificate)</div>
+        <span class="edu-score">⭐ 10.0 GPA</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STRENGTHS -->
+<hr class="divider" />
+<div class="section-wrap">
+  <p class="section-eyebrow">What drives me</p>
+  <h2 class="section-title">Core <em>Strengths</em></h2>
+  <div class="strengths-grid">
+    <div class="strength-card">
+      <div class="strength-icon-wrap">🤝</div>
+      <div class="strength-title">Team Collaborator</div>
+      <div class="strength-desc">Effective team player with strong communication skills and a collaborative approach to solving problems.</div>
+    </div>
+    <div class="strength-card">
+      <div class="strength-icon-wrap">⚡</div>
+      <div class="strength-title">Quick Learner</div>
+      <div class="strength-desc">Adapts swiftly to new technologies and frameworks with minimal ramp-up time and strong initiative.</div>
+    </div>
+    <div class="strength-card">
+      <div class="strength-icon-wrap">🔍</div>
+      <div class="strength-title">Detail-Oriented</div>
+      <div class="strength-desc">Methodical, thorough problem-solver who pays close attention to quality and accuracy in every task.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <p class="contact-eyebrow">Let's connect</p>
+        <h2 class="contact-title">Open to <em>Opportunities</em></h2>
+        <p class="contact-sub">
+          I'm actively seeking internships, entry-level engineering roles, and collaborative projects
+          in cybersecurity, networking, or web development. Let's build something together.
+        </p>
+      </div>
+      <div class="contact-right">
+        <a href="mailto:rishinalike@gmail.com" class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val">rishinalike@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+919393823880" class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-val">+91 93938 23880</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/nalike-rishi-75b6a927a/" target="_blank" class="contact-item">
+          <div class="contact-item-icon">💼</div>
+          <div>
+            <div class="contact-item-label">LinkedIn</div>
+            <div class="contact-item-val">nalike-rishi-75b6a927a</div>
+          </div>
+        </a>
+        <a href="https://github.com/rishi-git980" target="_blank" class="contact-item">
+          <div class="contact-item-icon">🐙</div>
+          <div>
+            <div class="contact-item-label">GitHub</div>
+            <div class="contact-item-val">rishi-git980</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer-bar">
+  © 2026 Nalike Rishi · B.Tech CSE · KITS Warangal · Built with purpose.
+</div>
+
+</body>
+</html>
